@@ -23,13 +23,17 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className={`sticky top-0 md:fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'md:bg-isabelline/95 md:backdrop-blur-md smd:hadow-lg' : 'md:bg-transparent'
+    <nav className={`sticky top-0 md:fixed w-full z-50 transition-all duration-300 bg-isabelline 
+      ${scrolled ? 'md:bg-isabelline/95 md:backdrop-blur-md md:shadow-lg' : 'md:bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-black-olive">
+            <div className={`text-2xl font-bold text-black-olive transition-all duration-300
+            ${scrolled ? 'opacity-0 pointer-events-none translate-y-[-4px]': 'opacity-100 translate-y-0'}
+            md:opacity-100 md:translate-y-0`
+            }
+            >
               Breached Young Adults Ministry
             </div>
           </div>
@@ -55,6 +59,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-black-olive hover:text-verdigris focus:outline-none focus:text-verdigris transition-colors duration-200"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -65,7 +70,7 @@ const Navigation = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-isabelline/95 backdrop-blur-md">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-isabelline">
             {navItems.map((item) => (
               <a
                 key={item.name}
